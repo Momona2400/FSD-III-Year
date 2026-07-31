@@ -1,0 +1,20 @@
+function sum(...num) {
+    const sum = num.reduce((s, i) => (s+i));
+    return sum;
+}
+
+const add = (...num) => {
+    let s = 0;
+    for(let i of num) {
+        s+=i;
+    }
+    return s;
+}
+
+export {sum, add};
+
+
+// export function sum(...num) {
+//     const sum = num.reduce((s, i) => (s+i));
+//     return sum;
+// }
