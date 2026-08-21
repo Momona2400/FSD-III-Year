@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Fetch</title>
+    <style> 
+        table {
+            margin: auto;
+            padding: 10px;
+            background-color: green;
+            border-collapse: collapse;
+            color: white;
+        }
+        th,td{
+            padding: 10px;
+            border: 1px solid rgb(255, 0, 0);
+        }
+    </style>
+    <script>
+        const URL = "https://dummyjson.com/products?limit=10&skip=2";
+        async function loadProduct() {
+            try {
+                const res=await fetch(URL);
+                const data=await res.json();
+                console.log("response = ", res);
+                console.log("data = ", data);
+                console.log("data.products = ", data.products);
+                let row="";
+                data.products.map(
+                    (i,index)=>{
+                        row+=`<tr>
+                            <td>${index+1}</td>
+                            <td>${i.title}</td>
+                            <td><img src="${i.images[0]}" width="100px" height="100px"/></td>
+                            <td>${i.category}</td>
+                            <td>${i.price}</td>
+                            <td>${i.rating}</td>
+                            <td><button>Add to cart</button></td>
+                        </tr>`
+                        ;
+                    }
+                );
+                const ele1=document.getElementById("data");
+                ele1.innerHTML=row;
+            }
+            catch(err) {
+                console.log("Error in fetching data = ", err);
+            }
+        }
+        loadProduct();
+    </script>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Indexx</th>
+                <th>Title</th>
+                <th>Image</th>            
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Add to cart</th>
+            </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+    </table>
+</body>
+</html>
