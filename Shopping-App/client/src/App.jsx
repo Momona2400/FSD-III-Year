@@ -1,4 +1,5 @@
-import UserLaout from "./pages/UserLayout"
+import UserLayout from "./pages/UserLayout"
+import './App.css'
 
 const App = () => {
   return (
